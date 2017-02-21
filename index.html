@@ -25,17 +25,18 @@ body{
 }
 
 </style>
-
 <!-- 
-    Step 1 ) Setting up the different sections === DONE
 
+    Step 1 ) Setting up the different sections === DONE
     Step 2 ) Setting up the different images === DONE
     Step 3 ) Hooking up the images to mouse events === DONE
     Step 4 ) Setting up the different character objects === DONE
-
     Step 5 ) On First-Click, set up the user's character === DONE
-    Step 6 ) Setting up the "Enemies Available to Attack"
-    Step 7 ) On Next-Click, set up the defender's character
+    Step 6 ) Setting up the "Enemies Available to Attack" === DONE
+    Step 7 ) On Next-Click, set up the defender's character === DONE
+
+
+
     Step 8 ) On "Attack" button click, this character attacks the other
              character, which affects both of their "health points". This 
              also will display the "health points" below the images
@@ -46,14 +47,9 @@ body{
     Step 13) Customize the styling/animations when clicked on the screen
 
 
-
-
-
-
+.html("")
 
  -->
-
-
 
 </head>
 <body background="assets/images/background.jpg">
@@ -91,13 +87,11 @@ body{
 
 <h2 style="clear:both;">Your Character</h2>
 <div id="your-character-container"></div>
-
-
 <h2 style="clear:both;">Enemies Available to Attack</h2>
 <div id="enemies-available"></div>
-<h2>Fight Section</h2>
-<div id="fight-section"></div>
-<h2>Defender</h2>
+<h2 style="clear:both;">Fight Section</h2>
+<div id="fight-section" ></div>
+<h2 style="clear:both;">Defender</h2>
 <div id="defender-area"></div>
 
 <button class="btn" type="button" style="margin-top: 10px;">Attack</button>  
@@ -131,27 +125,8 @@ var DarthMaul = {
     defensive: 25
 };
 
-
-
-
 var yourCharacter;
-
-
-
-
-
-
-$(document).ready(function(){
-  $(".btn").click(function(){
-      $("#char_1").animate({left: '250px'});
-  });
-});
-
-
-// set chracter to correct object literal
-// put that character into the your-character section (<div>)
-
-
+var defender;
 
 //  alerts to the screen for choosing characters 
     $(document).ready(function(){
@@ -166,7 +141,9 @@ $(document).ready(function(){
             $("#char_2").remove().appendTo("#enemies-available");
             $("#char_3").remove().appendTo("#enemies-available");
             $("#char_4").remove().appendTo("#enemies-available");
+
         })
+
 
         $("#char_2").on("click",function(){
             console.log("You chose Luke Skywalker");
@@ -196,11 +173,32 @@ $(document).ready(function(){
             $("#char_3").remove().appendTo("#enemies-available");
         })
 
+        //once you click one of the three guys from "enemies available", add that
+        //character to the "defender" area
+        $("#enemies-available").on("click", "div", function(){
+            // alert("You clicked on one of the enemies");
+            $(this).remove().appendTo("#defender-area");
+            var defenderName = $(this).attr("data-character");
+            if(defenderName === "Darth Sidious"){
+                defender = DarthSidious;
+                console.log(defender.points);
+            }
+            if(defenderName === "Darth Maul"){
+                defender = DarthMaul;
+                console.log(defender);
+            }
+            if(defenderName === "Obi-Won Kenobi"){
+                defender = ObiWon;
+                console.log(defender);
+            }
+            if(defenderName === "Luke Skywalker"){
+                defender = LukeSkywalker;
+                console.log(defender);
+            }
+
+        })
+
     })
-
-
-// $().remove().appendTo("#your-character-container");
-
 
 </script>
 </body>
