@@ -1,68 +1,182 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Star Wars RPG Game</title>
-
-<link src="assets/css/reset.css">
-<link src="assets/css/style.css">
+    <title>Star Wars RPG Game</title>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
+
+<link src="assets/css/reset.css"></link>
+<link src="assets/css/style.css"></link>    
+
+<link href="https://fonts.googleapis.com/css?family=Khand" rel="stylesheet">
+
+    
 <style type="text/css">
-	
-
-
-#char_1 {
-
-	background-color: green;
-	margin-bottom: 10px;
+    
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    height: auto;
+    margin: auto;
+    font-family: 'Khand', sans-serif;
+    
 }
-
-
 
 </style>
 
+<!-- 
+    Step 1 ) Setting up the different sections === DONE
+
+    Step 2 ) Setting up the different images === DONE
+    Step 3 ) Hooking up the images to mouse events === DONE
+    Step 4 ) Setting up the different character objects 
+
+    Step 5 ) On First-Click, set up the user's character
+    Step 6 ) Setting up the "Enemies Available to Attack"
+    Step 7 ) On Next-Click, set up the defender's character
+    Step 8 ) On "Attack" button click, this character attacks the other
+             character, which affects both of their "health points". This 
+             also will display the "health points" below the images
+    Step 9 ) Implement functionality for removing a character
+    Step 10 ) Display messages on the screen after death
+    Step 11 ) Implement the restart button
+    Step 12) Customize the damage amounts for different characters
+    Step 13) Customize the styling/animations when clicked on the screen
+
+
+
+
+
+
+
+ -->
+
+
+
 </head>
 <body background="assets/images/background.jpg">
-
 <h1>Star Wars RPG!</h1>
 
-<div id="char_1" style="height: 200px; width: 200px;"> 
-	Obi-Won Kenobi
 
-		<img src="assets/images/star_wars1.jpg" width="100px" height="100px">
+<div id="char_1" data-character="Obi-Won Kenobi" style="height: 140px; width: 120px; background-color: blue;
+    margin-right: 15px; float: left; padding-left:15px;">
+    Obi-Won Kenobi
+    <img src="assets/images/star_wars1.jpg" width="100px" height="100px">
+    120
+</div>
+<div id="char_2" data-character="Luke Skywalker" style="height: 140px; width: 120px; background-color: green; margin-right: 15px; float: left; padding-left:15px;">
+    Luke Skywalker
+    <img src="assets/images/star_wars2.jpg" width="100px" height="100px">
+    100
+</div>  
+<div id="char_3" data-character="Darth Sidious" style="height: 140px; width: 120px; background-color: red;
+    margin-right: 15px; float: left; padding-left:15px;">
+    Darth Sidious
 
+    <img src="assets/images/star_wars3.jpg" width="100px" height="100px">
+    150
+</div>
+<div id="char_4" data-character="Darth Maul" style="height: 140px; width: 120px; background-color: red;
+    margin-right: 15px; float: left; padding-left:15px;">
+    Darth Maul
+
+    <img src="assets/images/star_wars4.jpeg" width="100px" height="100px">
+    180
 
 </div>
 
-<div id="char_2" style="height: 200px; width: 200px; background-color: blue;">
-	Luke Skywalker
-
-	<img src="assets/images/star_wars2.jpg" width="100px" height="100px">
-
-</div>
 
 
-<script>
-	
+<h2 style="clear:both;">Your Character</h2>
+<div id="your-character-container">your character will go here :)</div>
+
+
+<h2 style="clear:both;">Enemies Available to Attack</h2>
+<div id="enemies-available"></div>
+<h2>Fight Section</h2>
+<div id="fight-section"></div>
+<h2>Defender</h2>
+<div id="defender-area"></div>
+
+<button class="btn" type="button" style="margin-top: 10px;">Attack</button>  
+<script >
+
+var ObiWon = {
+    name: "Obi-Won",
+    points: 75,
+    offensive: 25,
+    defensive: 25
+};
+
+var LukeSkywalker = {
+    name: "Luke Skywalker",
+    points: 75,
+    offensive: 25,
+    defensive: 25
+};
+
+var DarthSidious = {
+    name: "DS",
+    points: 75,
+    offensive: 25,
+    defensive: 25
+};
+
+var DarthMaul = {
+    name: "DM",
+    points: 75,
+    offensive: 25,
+    defensive: 25
+};
+
+
+
+
+var yourCharacter;
+
+
+
+
+
+
 $(document).ready(function(){
+  $(".btn").click(function(){
+      $("#char_1").animate({left: '250px'});
+  });
+});
 
-	$("#char_1").on("click", function(){
 
-		alert("You chose Obi-Won");
-	})
 
-	$("#char_2").on("click", function(){
 
-		alert("You chose Luke");
-	})	
+//  alerts to the screen for choosing characters 
+    $(document).ready(function(){
 
-})
+        $("#char_1").on("click",function(){
+            console.log("You chose Obi-Won");
+            console.log($(this));
+            console.log($(this).attr("data-character"));
+            yourCharacter = ObiWon;
+            console.log(ObiWon);
+        })
+
+        $("#char_2").on("click",function(){
+            console.log("You chose Luke Skywalker");
+        })
+
+        $("#char_3").on("click",function(){
+            console.log("You chose Darth Sidious");
+        })
+
+        $("#char_4").on("click",function(){
+            console.log("You chose Darth Maul");
+        })
+
+    })
+
+
 
 </script>
-
-
-
 </body>
 </html>
