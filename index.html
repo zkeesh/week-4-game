@@ -31,9 +31,9 @@ body{
 
     Step 2 ) Setting up the different images === DONE
     Step 3 ) Hooking up the images to mouse events === DONE
-    Step 4 ) Setting up the different character objects 
+    Step 4 ) Setting up the different character objects === DONE
 
-    Step 5 ) On First-Click, set up the user's character
+    Step 5 ) On First-Click, set up the user's character === DONE
     Step 6 ) Setting up the "Enemies Available to Attack"
     Step 7 ) On Next-Click, set up the defender's character
     Step 8 ) On "Attack" button click, this character attacks the other
@@ -90,7 +90,7 @@ body{
 
 
 <h2 style="clear:both;">Your Character</h2>
-<div id="your-character-container">your character will go here :)</div>
+<div id="your-character-container"></div>
 
 
 <h2 style="clear:both;">Enemies Available to Attack</h2>
@@ -148,6 +148,9 @@ $(document).ready(function(){
 });
 
 
+// set chracter to correct object literal
+// put that character into the your-character section (<div>)
+
 
 
 //  alerts to the screen for choosing characters 
@@ -159,22 +162,44 @@ $(document).ready(function(){
             console.log($(this).attr("data-character"));
             yourCharacter = ObiWon;
             console.log(ObiWon);
+            $(this).remove().appendTo("#your-character-container");
+            $("#char_2").remove().appendTo("#enemies-available");
+            $("#char_3").remove().appendTo("#enemies-available");
+            $("#char_4").remove().appendTo("#enemies-available");
         })
 
         $("#char_2").on("click",function(){
             console.log("You chose Luke Skywalker");
+            yourCharacter = LukeSkywalker;
+            $("#char_2").remove().appendTo("#your-character-container");
+            $("#char_1").remove().appendTo("#enemies-available");
+            $("#char_3").remove().appendTo("#enemies-available");
+            $("#char_4").remove().appendTo("#enemies-available");
+
         })
 
         $("#char_3").on("click",function(){
             console.log("You chose Darth Sidious");
+            yourCharacter = DarthSidious;
+            $("#char_3").remove().appendTo("#your-character-container");
+            $("#char_1").remove().appendTo("#enemies-available");
+            $("#char_2").remove().appendTo("#enemies-available");
+            $("#char_4").remove().appendTo("#enemies-available");
         })
 
         $("#char_4").on("click",function(){
             console.log("You chose Darth Maul");
+            yourCharacter = DarthMaul;
+            $("#char_4").remove().appendTo("#your-character-container");
+            $("#char_1").remove().appendTo("#enemies-available");
+            $("#char_2").remove().appendTo("#enemies-available");
+            $("#char_3").remove().appendTo("#enemies-available");
         })
 
     })
 
+
+// $().remove().appendTo("#your-character-container");
 
 
 </script>
