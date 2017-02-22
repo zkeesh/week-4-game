@@ -1,89 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Star Wars RPG Game</title>
+<title>Star Wars RPG Game</title>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-
-<link src="assets/css/reset.css"></link>
-<link src="assets/css/style.css"></link>    
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 <link href="https://fonts.googleapis.com/css?family=Khand" rel="stylesheet">
 
-    
-<style type="text/css">
-    
-body{
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: auto;
-    height: auto;
-    margin: auto;
-    font-family: 'Khand', sans-serif;
-    
-}
-
-</style>
-<!-- 
-
-    Step 1 ) Setting up the different sections === DONE
-    Step 2 ) Setting up the different images === DONE
-    Step 3 ) Hooking up the images to mouse events === DONE
-    Step 4 ) Setting up the different character objects === DONE
-    Step 5 ) On First-Click, set up the user's character === DONE
-    Step 6 ) Setting up the "Enemies Available to Attack" === DONE
-    Step 7 ) On Next-Click, set up the defender's character === DONE
-
-
-
-    Step 8 ) On "Attack" button click, this character attacks the other
-             character, which affects both of their "health points". This 
-             also will display the "health points" below the images
-    Step 9 ) Implement functionality for removing a character
-    Step 10 ) Display messages on the screen after death
-    Step 11 ) Implement the restart button
-    Step 12) Customize the damage amounts for different characters
-    Step 13) Customize the styling/animations when clicked on the screen
-
-
-.html("")
-
- -->
-
 </head>
 <body background="assets/images/background.jpg">
+
 <h1>Star Wars RPG!</h1>
-
-
 <div id="char_1" data-character="Obi-Won Kenobi" style="height: 140px; width: 120px; background-color: blue;
     margin-right: 15px; float: left; padding-left:15px;">
     Obi-Won Kenobi
     <img src="assets/images/star_wars1.jpg" width="100px" height="100px">
-    120
+    <div class="points">100</div>
 </div>
 <div id="char_2" data-character="Luke Skywalker" style="height: 140px; width: 120px; background-color: green; margin-right: 15px; float: left; padding-left:15px;">
     Luke Skywalker
     <img src="assets/images/star_wars2.jpg" width="100px" height="100px">
-    100
+    <div class="points">100</div>
 </div>  
 <div id="char_3" data-character="Darth Sidious" style="height: 140px; width: 120px; background-color: red;
     margin-right: 15px; float: left; padding-left:15px;">
     Darth Sidious
-
     <img src="assets/images/star_wars3.jpg" width="100px" height="100px">
-    150
+    <div class="points">100</div>
 </div>
 <div id="char_4" data-character="Darth Maul" style="height: 140px; width: 120px; background-color: red;
     margin-right: 15px; float: left; padding-left:15px;">
     Darth Maul
-
     <img src="assets/images/star_wars4.jpeg" width="100px" height="100px">
-    180
-
+    <div class="points">100</div>
 </div>
 
+<!-- MY QUESTION -->
+<!-- 
+    how do you link an Object to a div ID
 
+
+
+
+ -->
 
 <h2 style="clear:both;">Your Character</h2>
 <div id="your-character-container"></div>
@@ -93,15 +54,16 @@ body{
 <div id="fight-section" ></div>
 <h2 style="clear:both;">Defender</h2>
 <div id="defender-area"></div>
-
+<div id="updated-display"></div>
 <button class="btn" type="button" style="margin-top: 10px;">Attack</button>  
-<script >
+
+<script>
 
 var ObiWon = {
     name: "Obi-Won",
-    points: 75,
-    offensive: 25,
-    defensive: 25
+    points: 100,
+    offensive: 20,
+    defensive: 20
 };
 
 var LukeSkywalker = {
@@ -120,8 +82,8 @@ var DarthSidious = {
 
 var DarthMaul = {
     name: "DM",
-    points: 75,
-    offensive: 25,
+    points: 100,
+    offensive: 30,
     defensive: 25
 };
 
@@ -133,32 +95,29 @@ var defender;
 
         $("#char_1").on("click",function(){
             console.log("You chose Obi-Won");
-            console.log($(this));
-            console.log($(this).attr("data-character"));
+            // console.log($(this));
+            // console.log($(this).attr("data-character"));
             yourCharacter = ObiWon;
             console.log(ObiWon);
             $(this).remove().appendTo("#your-character-container");
             $("#char_2").remove().appendTo("#enemies-available");
             $("#char_3").remove().appendTo("#enemies-available");
             $("#char_4").remove().appendTo("#enemies-available");
-
         })
-
 
         $("#char_2").on("click",function(){
             console.log("You chose Luke Skywalker");
             yourCharacter = LukeSkywalker;
-            $("#char_2").remove().appendTo("#your-character-container");
+            $(this).remove().appendTo("#your-character-container");
             $("#char_1").remove().appendTo("#enemies-available");
             $("#char_3").remove().appendTo("#enemies-available");
             $("#char_4").remove().appendTo("#enemies-available");
-
         })
 
         $("#char_3").on("click",function(){
             console.log("You chose Darth Sidious");
             yourCharacter = DarthSidious;
-            $("#char_3").remove().appendTo("#your-character-container");
+            $(this).remove().appendTo("#your-character-container");
             $("#char_1").remove().appendTo("#enemies-available");
             $("#char_2").remove().appendTo("#enemies-available");
             $("#char_4").remove().appendTo("#enemies-available");
@@ -167,7 +126,7 @@ var defender;
         $("#char_4").on("click",function(){
             console.log("You chose Darth Maul");
             yourCharacter = DarthMaul;
-            $("#char_4").remove().appendTo("#your-character-container");
+            $(this).remove().appendTo("#your-character-container");
             $("#char_1").remove().appendTo("#enemies-available");
             $("#char_2").remove().appendTo("#enemies-available");
             $("#char_3").remove().appendTo("#enemies-available");
@@ -176,7 +135,6 @@ var defender;
         //once you click one of the three guys from "enemies available", add that
         //character to the "defender" area
         $("#enemies-available").on("click", "div", function(){
-            // alert("You clicked on one of the enemies");
             $(this).remove().appendTo("#defender-area");
             var defenderName = $(this).attr("data-character");
             if(defenderName === "Darth Sidious"){
@@ -195,8 +153,25 @@ var defender;
                 defender = LukeSkywalker;
                 console.log(defender);
             }
-
         })
+
+        $(".btn").on("click", function(){
+            yourCharacter.points -= defender.defensive;
+            defender.points -= yourCharacter.offensive;
+            var message = "You attacked" + defender.name + "for" + yourCharacter.offensive + "damage" + "<br>"
+                            + defender.name + "attacked you back for " + defender.defensive + "damage";
+            $("#updated-display").append(message);   
+            $("div.points").replaceWith(yourCharacter.points);
+        })
+
+        // $("div.points").replaceWith("Hello");
+        $("#char_1").hover(function(){
+            $(".points").replaceWith(000);
+        })
+
+// how to link back from an Object to a div ID
+
+
 
     })
 

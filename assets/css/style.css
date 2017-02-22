@@ -1,0 +1,14 @@
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    height: auto;
+    margin: auto;
+    font-family: 'Khand', sans-serif;
+    font-style: bolder;
+    
+}
+
+.btn {
+    font-size: 18px;
+}
